@@ -83,7 +83,7 @@ mlink-back/
 │   │
 │   ├── utils/                       # Shared utility functions
 │   │   ├── api-response.ts          # successResponse(), errorResponse(), ApiError class
-│   │   ├── jwt.ts                   # signToken(), verifyToken() helpers
+│   │   ├── Session.ts                   # signToken(), verifyToken() helpers
 │   │   ├── otp.ts                   # generateOtp(), validateOtp() helpers
 │   │   ├── email.ts                 # Nodemailer transporter and send helpers
 │   │   ├── sms.ts                   # Africa's Talking SMS send helper
