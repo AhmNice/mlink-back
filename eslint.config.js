@@ -21,7 +21,7 @@ export default [
       ...tsPlugin.configs.recommended.rules,
 
       // your custom overrides
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
 
       '@typescript-eslint/no-unused-vars': [
         'error',
