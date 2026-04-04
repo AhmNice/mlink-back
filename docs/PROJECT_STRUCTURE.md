@@ -85,6 +85,7 @@ mlink-back/
 │   │   ├── api-response.ts          # successResponse(), errorResponse(), ApiError class
 │   │   ├── Session.ts                   # signToken(), verifyToken() helpers
 │   │   ├── otp.ts                   # generateOtp(), validateOtp() helpers
+│   │   ├── referralCode.ts         # generateReferralCode() helper
 │   │   ├── email.ts                 # Nodemailer transporter and send helpers
 │   │   ├── sms.ts                   # Africa's Talking SMS send helper
 │   │   ├── encryption.ts           # Encrypt/decrypt helpers for PII and messages

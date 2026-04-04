@@ -8,19 +8,38 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  password      String
-  role          Role           @default(USER)
-  isActive      Boolean        @default(true)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  isVerified    Boolean        @default(false)
-  profile       Profile?
-  refreshTokens RefreshToken[]
+  id                  String             @id @default(uuid())
+  email               String             @unique
+  phoneNumber         String             @unique
+  passwordHash        String
+  role                Role               @default(USER)
+  verificationStatus  VerificationStatus @default(PENDING_OTP)
+  tier                UserTier           @default(FREE)
+  tierAssignedAt      DateTime?
+  badgeLevel          Int                @default(0)  // 0=none, 1=basic, 2=verified, 3=premium
+  otpCode             String?
+  otpExpiresAt        DateTime?
+  otpAttempts         Int                @default(0)
+  otpLastSentAt       DateTime?
+  readinessScore      Int                @default(0)
+  tisScore            Int                @default(0)
+  isAdmin             Boolean            @default(false)
+  isSuspended         Boolean            @default(false)
+  suspendedAt         DateTime?
+  suspendedReason     String?
+  referralCode        String             @unique @default(uuid())
+  referredByCode      String?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
 
+  // Relations
+  profile             Profile?
+  refreshTokens       RefreshToken[]
+
+  @@index([verificationStatus])
+  @@index([tier])
+  @@index([tierAssignedAt])
   @@index([email])
-  @@index([role])
 }
 
 model Profile {
@@ -52,4 +71,27 @@ enum Role {
   USER
   ADMIN
   MODERATOR
+}
+
+enum VerificationStatus {
+  PENDING_OTP
+  PENDING_PROFILE
+  PENDING_DOCUMENTS
+  PENDING_SCORE
+  PENDING_REVIEW
+  REJECTED
+  PENDING_STRUCTURING
+  PENDING_PAYMENT
+  BADGE_ASSIGNED
+  MARKETPLACE_ACTIVE
+  SUSPENDED
+}
+
+enum UserTier {
+  FREE
+  BETA_BUYER
+  BETA_POWER_BUYER
+  BETA_SELLER
+  PREMIUM
+  ADMIN
 }

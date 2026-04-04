@@ -13,6 +13,11 @@ interface config {
   JWT_REFRESH_EXPIRES_IN: string;
   REFRESH_TOKEN_SECRET: string;
   ACCESS_TOKEN_SECRET: string;
+  SMTP_HOST?: string;
+  SMTP_PORT?: number;
+  SMTP_USER?: string;
+  SMTP_PASS?: string;
+  SMTP_SERVICE?: string;
 }
 const config: config = {
   PORT: Number(process.env.PORT) || 5000,
@@ -29,5 +34,10 @@ const config: config = {
   ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET
     ? process.env.ACCESS_TOKEN_SECRET
     : '',
+  SMTP_HOST: process.env.SMTP_HOST || '',
+  SMTP_PORT: Number(process.env.SMTP_PORT) || 587,
+  SMTP_USER: process.env.SMTP_USER || '',
+  SMTP_PASS: process.env.SMTP_PASS || '',
+  SMTP_SERVICE: process.env.SMTP_SERVICE || '',
 };
 export default config;

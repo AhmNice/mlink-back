@@ -1,4 +1,5 @@
 export interface SessionPayload {
+  id?: string;
   user_id: string;
   userName: string;
   email: string;
