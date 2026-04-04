@@ -193,7 +193,7 @@ export class AuthService {
           otpCode: null,
           otpExpiresAt: null,
           otpAttempts: 0,
-          verificationStatus: 'PENDING_DOCUMENTS',
+          verificationStatus: 'PENDING_PROFILE',
         },
         include: { profile: true },
       });
